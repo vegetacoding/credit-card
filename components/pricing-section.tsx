@@ -1,6 +1,8 @@
+"use client"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function PricingSection() {
   const plans = [
@@ -48,59 +50,112 @@ export default function PricingSection() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <section id="pricing" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Phí & Lãi suất</h2>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
             Lựa chọn gói thẻ phù hợp với nhu cầu tài chính và phong cách sống của bạn
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {plans.map((plan, index) => (
-            <Card
-              key={index}
-              className={`border-none shadow-lg hover:shadow-xl transition-all ${
-                plan.popular ? "scale-105 border-2 border-[#a3d0f9]" : ""
-              }`}
-            >
-              {plan.popular && (
-                <div className="bg-[#a3d0f9] text-white text-center py-1 text-sm font-medium">Phổ biến nhất</div>
-              )}
-              <CardHeader>
-                <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                <CardDescription className="text-gray-600">{plan.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-6">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-gray-600"> VNĐ/năm</span>
-                </div>
-                <ul className="space-y-3">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <Check className="h-5 w-5 text-[#a3d0f9] mr-2 shrink-0 mt-0.5" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  className={`w-full ${
-                    plan.popular ? "bg-[#a3d0f9] hover:bg-[#a3d0f9]" : "bg-gray-800 hover:bg-gray-900"
-                  }`}
-                >
-                  Đăng ký ngay
-                </Button>
-              </CardFooter>
-            </Card>
+            <motion.div key={index} variants={itemVariants}>
+              <Card
+                className={`border-none shadow-lg hover:shadow-xl transition-all ${
+                  plan.popular ? "scale-105 border-2 border-[#a3d0f9]" : ""
+                }`}
+              >
+                {plan.popular && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                    className="bg-[#a3d0f9] text-white text-center py-1 text-sm font-medium"
+                  >
+                    Phổ biến nhất
+                  </motion.div>
+                )}
+                <CardHeader>
+                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
+                  <CardDescription className="text-gray-600">{plan.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-6">
+                    <span className="text-4xl font-bold">{plan.price}</span>
+                    <span className="text-gray-600"> VNĐ/năm</span>
+                  </div>
+                  <ul className="space-y-3">
+                    {plan.features.map((feature, i) => (
+                      <motion.li 
+                        key={i} 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 * i }}
+                        className="flex items-start"
+                      >
+                        <Check className="h-5 w-5 text-[#a3d0f9] mr-2 shrink-0 mt-0.5" />
+                        <span>{feature}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className={`w-full ${
+                      plan.popular ? "bg-[#a3d0f9] hover:bg-[#a3d0f9]" : "bg-gray-800 hover:bg-gray-900"
+                    }`}
+                  >
+                    Đăng ký ngay
+                  </Button>
+                </CardFooter>
+              </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 bg-white p-6 rounded-lg shadow-md max-w-3xl mx-auto"
+        >
           <h3 className="text-xl font-semibold mb-4">Thông tin lãi suất</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -120,7 +175,7 @@ export default function PricingSection() {
               <p className="text-gray-600">4% số tiền giao dịch (tối thiểu 50.000 VNĐ)</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

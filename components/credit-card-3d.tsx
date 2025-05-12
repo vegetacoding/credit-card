@@ -63,7 +63,7 @@ function CreditCardModel({ flipped, ...props }) {
             </mesh>
 
             {/* Card Number */}
-            <mesh position={[0, 0, 0.032]}>
+            <mesh position={[-0.2, 0, 0.032]}>
               <Html transform scale={0.5}>
                 <div
                   className="text-gray-800 text-base tracking-wider font-roboto"

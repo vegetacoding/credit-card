@@ -1,12 +1,42 @@
+"use client"
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Footer() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          <motion.div variants={itemVariants}>
             <h3 className="text-xl font-bold text-white mb-4">PremiumCard</h3>
             <p className="mb-4">
               Thẻ tín dụng cao cấp với đặc quyền vượt trội, mang đến trải nghiệm tài chính hiện đại cho cuộc sống của
@@ -26,9 +56,9 @@ export default function Footer() {
                 <Linkedin size={20} />
               </Link>
             </div>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-white mb-4">Liên kết nhanh</h3>
             <ul className="space-y-2">
               <li>
@@ -57,9 +87,9 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-white mb-4">Chính sách</h3>
             <ul className="space-y-2">
               <li>
@@ -88,9 +118,9 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
-          <div>
+          <motion.div variants={itemVariants}>
             <h3 className="text-lg font-semibold text-white mb-4">Liên hệ</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
@@ -106,12 +136,18 @@ export default function Footer() {
                 <span>support@premiumcard.vn</span>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="border-t border-gray-800 mt-12 pt-8 text-center text-sm"
+        >
           <p>© 2025 PremiumCard. Tất cả các quyền được bảo lưu.</p>
-        </div>
+        </motion.div>
       </div>
     </footer>
   )
