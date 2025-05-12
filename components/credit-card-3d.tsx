@@ -43,14 +43,14 @@ function CreditCardModel({ flipped, ...props }) {
         {!flipped && (
           <>
             {/* Bank Logo */}
-            <mesh position={[-1.5, 0.8, 0.032]}>
+            <mesh position={[-1, 0.8, 0.032]}>
               <Html transform scale={0.4}>
                 <div className="text-gray-800 text-base font-bold font-roboto">PREMIUM</div>
               </Html>
             </mesh>
 
             {/* Card Type */}
-            <mesh position={[0.7, 0.8, 0.032]}>
+            <mesh position={[1.2, 0.8, 0.032]}>
               <Html transform scale={0.3}>
                 <div className="text-gray-800 text-xs font-bold font-roboto">WORLD ELITE</div>
               </Html>
@@ -63,7 +63,7 @@ function CreditCardModel({ flipped, ...props }) {
             </mesh>
 
             {/* Card Number */}
-            <mesh position={[-0.2, 0, 0.032]}>
+            <mesh position={[0.2, 0, 0.032]}>
               <Html transform scale={0.5}>
                 <div
                   className="text-gray-800 text-base tracking-wider font-roboto"
@@ -75,7 +75,7 @@ function CreditCardModel({ flipped, ...props }) {
             </mesh>
 
             {/* Cardholder Name */}
-            <mesh position={[-1.5, -0.5, 0.032]}>
+            <mesh position={[-1, -0.5, 0.032]}>
               <Html transform scale={0.3}>
                 <div className="font-roboto">
                   <div className="text-gray-600 text-xs">CHỦ THẺ</div>
@@ -85,7 +85,7 @@ function CreditCardModel({ flipped, ...props }) {
             </mesh>
 
             {/* Expiry Date */}
-            <mesh position={[0.5, -0.5, 0.032]}>
+            <mesh position={[1, -0.5, 0.032]}>
               <Html transform scale={0.3}>
                 <div className="font-roboto text-right">
                   <div className="text-gray-600 text-xs">HẠN SỬ DỤNG</div>
@@ -95,7 +95,7 @@ function CreditCardModel({ flipped, ...props }) {
             </mesh>
 
             {/* Card Brand */}
-            <mesh position={[0.5, -0.8, 0.032]}>
+            <mesh position={[1, -0.8, 0.032]}>
               <Html transform scale={0.3}>
                 <div className="text-gray-800 text-xs font-bold font-roboto">PREMIUM CARD</div>
               </Html>
